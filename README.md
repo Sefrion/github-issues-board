@@ -1,1 +1,1 @@
-This is app displays github issues of chosen repository as kanban board
+This is app that displays github issues of chosen repository as kanban board
