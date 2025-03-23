@@ -2,12 +2,16 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useAppDispatch } from '@/redux/hooks';
+import { getIssues } from '@/redux/issuesSlice';
 
 export default function SearchField() {
-	const [url, setUrl] = useState('');
+	const [url, setUrl] = useState<string>('');
+	const dispatch = useAppDispatch();
 
 	function loadIssues() {
-		//
+		dispatch(getIssues(url));
+		setUrl('');
 	}
 
 	return (
@@ -17,8 +21,9 @@ export default function SearchField() {
 				value={url}
 				onChange={(e) => setUrl(e.target.value)}
 				placeholder='Enter repo URL'
+				className='border border-gray-300'
 			/>
-			<Button type='button' onClick={loadIssues}>
+			<Button className='ml-2' type='button' onClick={loadIssues}>
 				Load issues
 			</Button>
 		</div>
